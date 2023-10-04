@@ -15,7 +15,7 @@ export function fetchWrapper<T = unknown>(
         body: data ? JSON.stringify(data) : undefined,
     };
 
-    return fetch(url, requestOptions)
+    return fetch(`${process.env.REACT_APP_API_URL}/${url}`, requestOptions)
         .then((res) => handleResponse<T>(res))
         .catch((error) => {
             // Handle any network or fetch-related errors here.

@@ -48,7 +48,6 @@ export const Menus = () => (
         {menus.map((menu) => (
             <li key={menu.to}>
                 <NavLink
-                    // className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group"
                     to={menu.to}
                     className={({ isActive }) =>
                         'flex items-center p-2 text-base font-medium text-gray-900 rounded-lg hover:bg-gray-100 group ' +

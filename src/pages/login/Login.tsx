@@ -5,14 +5,14 @@ import Input from '../../components/input/Input';
 import Alert from '../../components/alert/Alert';
 
 export const LoginPage = () => {
-    let location = useLocation();
-    let params = new URLSearchParams(location.search);
-    let from = params.get('from') || '/';
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const from = params.get('from') || '/';
 
-    let navigation = useNavigation();
-    let isLoggingIn = navigation.formData?.get('email') != null;
+    const navigation = useNavigation();
+    const isLoggingIn = navigation.formData?.get('email') != null;
 
-    let actionData = useActionData() as { error: string } | undefined;
+    const actionData = useActionData() as { error: string } | undefined;
 
     return (
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">

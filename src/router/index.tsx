@@ -27,7 +27,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'events',
-                loader: eventsLoader,
+                loader: async (data) => {
+                    return protectedLoader(data, eventsLoader);
+                },
                 Component: EventsPage,
             },
         ],
