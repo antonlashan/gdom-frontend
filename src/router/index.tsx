@@ -1,6 +1,6 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 
-import { fakeAuthProvider } from '../utils/auth';
+import { localStorageUtil } from '../utils/localStorageUtil';
 
 import { EventsPage } from '../pages/events/Events';
 import { HomePage } from '../pages/home/Home';
@@ -48,9 +48,10 @@ export const router = createBrowserRouter([
     },
     {
         path: '/logout',
-        async action() {
+        action() {
             // We signout in a "resource route" that we can hit from a fetcher.Form
-            await fakeAuthProvider.signout();
+            localStorageUtil.removeItem('accessToken');
+
             return redirect('/');
         },
     },

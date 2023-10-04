@@ -1,9 +1,12 @@
 import { IApiResponse } from '../interfaces/api';
+import { localStorageUtil } from '../utils/localStorageUtil';
+
+type TMethods = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export function fetchWrapper<T = unknown>(
     url: string,
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE',
-    data = null,
+    method: TMethods,
+    data: unknown = null,
     headers = {},
 ): Promise<T> {
     const requestOptions = {
@@ -22,6 +25,13 @@ export function fetchWrapper<T = unknown>(
             console.error('Fetch request failed:', error);
             throw error;
         });
+}
+
+export function fetchAuthWrapper<T = unknown>(url: string, method: TMethods, data: unknown = null, headers = {}) {
+    return fetchWrapper<T>(url, method, data, {
+        ...headers,
+        'x-access-token': localStorageUtil.getItem('accessToken'),
+    });
 }
 
 function handleResponse<T>(response: Response): Promise<T> {

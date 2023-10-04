@@ -1,12 +1,11 @@
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 
-import { fakeAuthProvider } from '../../utils/auth';
+import { localStorageUtil } from '../../utils/localStorageUtil';
 
 export async function protectedLoader(args: LoaderFunctionArgs, callback?: (args: LoaderFunctionArgs) => void) {
-    // If the user is not logged in and tries to access `/protected`, we redirect
-    // them to `/login` with a `from` parameter that allows login to redirect back
-    // to this page upon successful authentication
-    if (!fakeAuthProvider.isAuthenticated) {
+    const accessToken = localStorageUtil.getItem('accessToken');
+
+    if (!accessToken) {
         let params = new URLSearchParams();
         params.set('from', new URL(args.request.url).pathname);
         return redirect('/login?' + params.toString());

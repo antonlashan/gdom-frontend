@@ -1,9 +1,10 @@
 import { redirect } from 'react-router-dom';
-
-import { fakeAuthProvider } from '../../utils/auth';
+import { localStorageUtil } from '../../utils/localStorageUtil';
 
 export async function nonProtectedLoader() {
-    if (fakeAuthProvider.isAuthenticated) {
+    const accessToken = localStorageUtil.getItem('accessToken');
+
+    if (accessToken) {
         return redirect('/');
     }
     return null;
