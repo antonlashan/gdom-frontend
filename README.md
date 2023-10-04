@@ -24,7 +24,17 @@ npm i
 npm run start
 ```
 
-5. Login in to the system, currently email address is not validate so any valid email could be used to login
+5. Login in to the system.
+
+Credentials
+
+```
+admin@abc.com
+test1234
+
+demo@abc.com
+test1234
+```
 
 ## Available Scripts
 
